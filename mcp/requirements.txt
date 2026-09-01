@@ -1,0 +1,10 @@
+# MCP SDK stable production line. Keep the upper bound to avoid an automatic v2 migration.
+mcp>=1.28.1,<2
+
+# Direct runtime dependencies imported by this project.
+anyio>=4.5,<5
+uvicorn>=0.31.1,<1
+starlette>=0.48,<1
+httpx>=0.28,<1
+pydantic>=2.11,<3
+python-dotenv>=1.1,<2
