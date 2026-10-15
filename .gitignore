@@ -1,0 +1,150 @@
+# =============================================================================
+# Adobe Tags MCP — .gitignore
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Secrets & environment (never commit)
+# -----------------------------------------------------------------------------
+.env
+**/.env
+.env.*
+**/.env.*
+!.env.example
+!api/.env.example
+!mcp/.env.example
+
+*.local
+*.secret
+secrets/
+credentials/
+*.credentials.json
+
+# Keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Adobe auth vault, session store, and local API data
+data/
+*.vault
+*.vault.*
+
+# Tunnel / dev exposure (ngrok, cloudflared, etc.)
+.ngrok/
+ngrok.yml
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments (root, api/, mcp/)
+.venv/
+venv/
+env/
+ENV/
+api/.venv/
+mcp/.venv/
+
+# Packaging & build
+*.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+wheels/
+dist/
+build/
+out/
+*.manifest
+*.spec
+
+# Test, coverage, type-check caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.pyright/
+.ruff_cache/
+.hypothesis/
+coverage/
+
+# -----------------------------------------------------------------------------
+# Logs & runtime
+# -----------------------------------------------------------------------------
+errorLog.txt
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+.cache/
+tmp/
+temp/
+*.pid
+*.pid.lock
+
+# -----------------------------------------------------------------------------
+# Docker & cloud local overrides
+# -----------------------------------------------------------------------------
+docker-compose.override.yml
+docker-compose.local.yml
+*.override.yaml
+
+# -----------------------------------------------------------------------------
+# IDEs & editors
+# -----------------------------------------------------------------------------
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.example.json
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# -----------------------------------------------------------------------------
+# Operating system
+# -----------------------------------------------------------------------------
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# -----------------------------------------------------------------------------
+# Local databases
+# -----------------------------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+
+# -----------------------------------------------------------------------------
+# MCP / AI local dev artifacts
+# -----------------------------------------------------------------------------
+.mcp/
+mcp-debug/

@@ -17,7 +17,7 @@ Tags. It is not an official Adobe product.
 
 - Python **3.10+**
 - Adobe Developer Console project with **Experience Platform Tags (Reactor) API**
-- Root folder: `adobeTagsMCP/` (this repo)
+- Root folder: `adobe-tags-mcp/` (this repo)
 
 ---
 
@@ -31,7 +31,7 @@ Tags. It is not an official Adobe product.
 Adobe secrets stay in **`api/.env` only**. MCP never talks to Adobe directly.
 
 ```powershell
-cd adobeTagsMCP
+cd adobe-tags-mcp
 copy api\.env.example api\.env
 copy mcp\.env.example mcp\.env
 ```
@@ -106,34 +106,30 @@ Use this on company laptops where `.\scripts\*.ps1` is blocked.
 **Windows (PowerShell or CMD):**
 
 ```powershell
-cd adobeTagsMCP
+cd adobe-tags-mcp
 
 # Create virtual environment at repo root
-py -3 -m venv .venv
+python -m venv .venv
+
+# Activate virtual environment
 
 # Install dependencies (API + MCP share one venv)
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r api\requirements-dev.txt
 .\.venv\Scripts\python.exe -m pip install -r mcp\requirements-dev.txt
 
-# Create package env files if you have not already
-copy api\.env.example api\.env
-copy mcp\.env.example mcp\.env
-# Edit api\.env with Adobe credentials; match MCP_API_KEY in mcp\.env
 ```
 
 **macOS / Linux:**
 
 ```bash
-cd adobeTagsMCP
-python3 -m venv .venv
+cd adobe-tags-mcp
+python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r api/requirements-dev.txt
 python -m pip install -r mcp/requirements-dev.txt
-cp api/.env.example api/.env
-cp mcp/.env.example mcp/.env
-# Edit api/.env with Adobe credentials; match MCP_API_KEY in mcp/.env
+
 ```
 
 ### 2. Start API (every time)
@@ -141,15 +137,15 @@ cp mcp/.env.example mcp/.env
 **Windows:**
 
 ```powershell
-cd adobeTagsMCP\api
-..\.venv\Scripts\python.exe -m app.main
+cd api
+python -m app.main
 ```
 
 **macOS / Linux:**
 
 ```bash
-cd adobeTagsMCP/api
-../.venv/bin/python -m app.main
+cd api
+python -m app.main
 ```
 
 API runs at `http://127.0.0.1:3000` (loopback only — `API_HOST=0.0.0.0` is rejected).
@@ -168,8 +164,6 @@ Invoke-RestMethod http://127.0.0.1:3000/api/v1/tags/properties
 
 ```bash
 curl http://127.0.0.1:3000/health
-curl http://127.0.0.1:3000/api/v1/auth/status
-curl http://127.0.0.1:3000/api/v1/tags/properties
 ```
 
 **Mode A login (browser):** open `http://127.0.0.1:3000/auth/adobe/start`
@@ -179,15 +173,15 @@ curl http://127.0.0.1:3000/api/v1/tags/properties
 **Windows:**
 
 ```powershell
-cd adobeTagsMCP\mcp
-..\.venv\Scripts\python.exe -m app.server
+cd mcp
+python -m app.server
 ```
 
 **macOS / Linux:**
 
 ```bash
-cd adobeTagsMCP/mcp
-../.venv/bin/python -m app.server
+cd mcp
+python -m app.server
 ```
 
 ---
@@ -197,7 +191,6 @@ cd adobeTagsMCP/mcp
 If your machine allows local PowerShell scripts:
 
 ```powershell
-cd adobeTagsMCP
 .\scripts\setup.ps1
 # Edit api\.env (Adobe) and ensure mcp\.env MCP_API_KEY matches
 ```
@@ -223,7 +216,7 @@ If scripts are blocked, use **Option A** above.
 See [project context](./docs/project-context.md) for the architecture and
 read-only design. Key API endpoints:
 
-| Method | Path                                                            | Notes |
+| Method | Path                                                            | Notes                                                                                                         |
 | ------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | GET    | `/health`                                                       |
 | GET    | `/api/v1/auth/status`                                           |
@@ -322,7 +315,7 @@ you cloned this repository. For example, if you cloned it to
 `C:\Users\your-name\Projects\adobe-tags-mcp\mcp\run-mcp.cmd`.
 
 ```json
-"adobe-tags": {
+"adobe-tags-mcp": {
   "command": "<absolute-path-to-your-cloned-repository>\\mcp\\run-mcp.cmd",
   "args": [],
   "env": {
@@ -343,12 +336,13 @@ you cloned this repository. For example, if you cloned it to
    `<absolute-path-to-your-cloned-repository>` with the folder where you
    cloned this repository:
 
-| Field | Value to enter |
-| --- | --- |
-| Command | `<absolute-path-to-your-cloned-repository>\.venv\Scripts\python.exe` |
-| Args | `-m` `app.server` |
-| Working directory | `<absolute-path-to-your-cloned-repository>\mcp` |
-| Env | Use the values in `mcp/.env`; do not add Adobe credentials to ChatGPT settings. |
+| Field             | Value to enter                                                                  |
+| ----------------- | ------------------------------------------------------------------------------- |
+| Name              | `adobe-tags-mcp`                                                                |
+| Command           | `<absolute-path-to-your-cloned-repository>\.venv\Scripts\python.exe`            |
+| Args              | `-m` `app.server`                                                               |
+| Working directory | `<absolute-path-to-your-cloned-repository>\mcp`                                 |
+| Env               | Use the values in `mcp/.env`; do not add Adobe credentials to ChatGPT settings. |
 
 For example, a clone at `C:\Users\your-name\Projects\adobe-tags-mcp` uses
 `C:\Users\your-name\Projects\adobe-tags-mcp\.venv\Scripts\python.exe` as
